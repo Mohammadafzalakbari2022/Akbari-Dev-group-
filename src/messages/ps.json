@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "title": "د اکبري پراختیاګروپ",
+    "description": "زموږ ټول محصولات په یوه ځای — ساده، چټک، باوري"
+  },
+  "brand": {
+    "name": "د اکبري پراختیاګروپ",
+    "shortName": "Akbari Dev Group",
+    "tagline": "زموږ ټول محصولات په یوه ځای — ساده، چټک، باوري"
+  },
+  "nav": {
+    "about": "زموږ په اړه",
+    "products": "محصولات",
+    "reviews": "نظرات",
+    "contact": "اړیکه"
+  },
+  "theme": {
+    "light": "روښانه",
+    "dark": "تیاره",
+    "system": "سیسټم",
+    "toggle": "تم بدلول"
+  },
+  "hero": {
+    "headline": "د اکبري پراختیاګروپ",
+    "subheadline": "موږ د افغانستان خلکو لپاره کارونکي اپلیکیشنونه جوړوو — ساده، چټک او باوري.",
+    "ctaAbout": "زموږ په اړه",
+    "ctaProducts": "محصولات وګورئ",
+    "statProducts": "محصول",
+    "statDownloads": "ډاونلوډ",
+    "statLanguages": "ژبه"
+  },
+  "pages": {
+    "about": {
+      "title": "زموږ په اړه",
+      "description": "د اکبري پراختیاګروپ کیسه، ماموریت او ټیم",
+      "placeholder": "د دې پاڼې منځپانګه د مدیریت ډشبورډ څخه بار کیږي.",
+      "team": "زموږ ټیم",
+      "followUs": "موږ سره اړیکه ونیسئ"
+    },
+    "products": {
+      "title": "محصولات",
+      "description": "ټول اپلیکیشنونه او وسایل د اکبري پراختیاګروپ",
+      "placeholder": "تر اوسه هیڅ محصول خپور شوی نه دی.",
+      "emptyHint": "ډیر ژر نوي محصولات اضافه کیږي."
+    },
+    "reviews": {
+      "title": "نظرات",
+      "description": "د کاروونکو نظرونه زموږ د محصولاتو په اړه"
+    },
+    "contact": {
+      "title": "اړیکه",
+      "description": "موږ سره اړیکه ونیسئ — ملاتړ، پلور او عمومي پوښتنې",
+      "placeholder": "د اړیکې معلومات د سایټ تنظیماتو څخه بار کیږي."
+    }
+  },
+  "products": {
+    "featured": "ځانګړی",
+    "new": "نوی",
+    "view": "وګورئ",
+    "searchPlaceholder": "محصول ولټوئ...",
+    "filterPlatform": "پلیټ فارم فیلتر",
+    "filterStatus": "حالت فیلتر",
+    "allPlatforms": "ټول پلیټ فارمونه",
+    "allStatuses": "ټول حالتونه",
+    "statusActive": "فعال",
+    "statusArchived": "آرشیف",
+    "noResults": "محصول ونه موندل شو",
+    "platform": {
+      "android": "اندروید",
+      "ios": "iOS",
+      "web": "ویب",
+      "desktop": "ډیسټاپ",
+      "database": "ډیټابیس",
+      "other": "نور"
+    },
+    "purpose": "دا محصول څه دی؟",
+    "features": "څه وړتیاوې لري؟",
+    "screenshots": "انځورونه",
+    "requirements": "د سیسټم اړتیاوې",
+    "howToUse": "څنګه کارول",
+    "openDocumentation": "مستندات پرانیزئ",
+    "downloadGuide": "لارښود ډاونلوډ",
+    "tabDownload": "ډاونلوډ",
+    "tabReviews": "نظرات",
+    "tabChangelog": "بدلونونه",
+    "version": "نسخه",
+    "lastUpdated": "وروستی تازه",
+    "downloads": "ډاونلوډ",
+    "share": "شریکول",
+    "linkCopied": "لینک کاپي شو",
+    "downloadAndroid": "APK ډاونلوډ",
+    "downloadIos": "App Store",
+    "openWeb": "ویب اپ پرانیزئ",
+    "downloadDesktop": "ډیسټاپ ډاونلوډ",
+    "viewDocs": "مستندات",
+    "download": "ډاونلوډ",
+    "noDownloads": "ډاونلوډ لینک نشته",
+    "qrTitle": "د اندروید لپاره سکین",
+    "qrHint": "د APK ډاونلوډ لپاره QR سکین کړئ",
+    "noChangelog": "بدلون نشته",
+    "writeReview": "نظر ولیکئ",
+    "rating": "درجه",
+    "nameOptional": "نوم (اختیاري)",
+    "comment": "نظر",
+    "submitReview": "نظر ولېږئ",
+    "submitting": "لیږل کیږي...",
+    "reviewSubmitted": "ستاسo نظر ثبت شو",
+    "reviewPending": "د مدیر تایید وروسته ښکاره کیږي",
+    "submitAnotherReview": "بل نظر ولېږئ",
+    "reviewError": "خطا — بیا هڅه وکړئ",
+    "supportTitle": "ملاتړ او اړیکه",
+    "pricingTitle": "بیه",
+    "howToPay": "د تادیې طریقه",
+    "followProduct": "دا محصول تعقیب کړئ",
+    "reportProblem": "ستونزه راپور کړئ",
+    "reportProblemHint": "بګ یا ستونزه وموندله؟ موږ ته خبر راکړئ.",
+    "reportName": "نوم (اختیاري)",
+    "reportEmail": "بریښنالیک",
+    "reportPhone": "تلیفون",
+    "reportMessage": "ستونزه تشریح کړئ",
+    "reportSubmit": "راپور ولېږئ",
+    "reportSubmitting": "لیږل کیږي...",
+    "reportSuccess": "راپور ترلاسه شو — مننه",
+    "reportAnother": "بله ستونزه راپور کړئ",
+    "reportError": "خطا — بیا هڅه وکړئ"
+  },
+  "home": {
+    "featuredProducts": "ځانګړي محصولات",
+    "viewAll": "ټول وګورئ",
+    "testimonials": "د خلکو نظرونه",
+    "followUs": "موږ تعقیب کړئ",
+    "howToPay": "د تادیې طریقه",
+    "contactCta": "اړیکه ونیسئ",
+    "contactHint": "د محصولاتو، بیې یا ملاتړ په اړه پوښتنې لرئ؟ موږ دلته یو.",
+    "contactPage": "د اړیکې پاڼه"
+  },
+  "social": {
+    "followUs": "موږ په ټولنیزو شبکو کې تعقیب کړئ",
+    "externalLink": "په نوې کړکۍ کې پرانیزي"
+  },
+  "contact": {
+    "inquiryType": "د غوښتنې ډول",
+    "typeGeneral": "عمومي",
+    "typeSupport": "تخنیکي ملاتړ",
+    "typePricing": "بیه او پلور",
+    "name": "نوم",
+    "email": "بریښنالیک",
+    "phone": "تلیفون",
+    "subject": "موضوع",
+    "message": "پیام",
+    "submit": "ولېږئ",
+    "submitting": "لیږل کیږي...",
+    "success": "ستاسo پیام ترلاسه شو",
+    "sendAnother": "بل پیام ولېږئ",
+    "error": "خطا — بیا هڅه وکړئ",
+    "whatsapp": "واټساپ",
+    "telegram": "ټیلیګرام"
+  },
+  "footer": {
+    "copyright": "© {year} د اکبري پراختیاګروپ",
+    "privacy": "محرمیت",
+    "terms": "د کارولو شرایط",
+    "followUs": "تعقیب کړئ",
+    "payments": "تادیه"
+  },
+  "common": {
+    "openMenu": "مینو پرانیزئ",
+    "closeMenu": "مینو بند کړئ",
+    "language": "ژبه",
+    "comingSoon": "ډیر ژر"
+  }
+}

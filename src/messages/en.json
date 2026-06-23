@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "title": "Akbari Dev Group",
+    "description": "All our products in one place — simple, fast, trusted"
+  },
+  "brand": {
+    "name": "Akbari Dev Group",
+    "shortName": "Akbari Dev Group",
+    "tagline": "All our products in one place — simple, fast, trusted"
+  },
+  "nav": {
+    "about": "About Us",
+    "products": "Products",
+    "reviews": "Reviews",
+    "contact": "Contact"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggle": "Toggle theme"
+  },
+  "hero": {
+    "headline": "Akbari Dev Group",
+    "subheadline": "We build practical apps for people in Afghanistan — simple, fast, and trusted.",
+    "ctaAbout": "About Us",
+    "ctaProducts": "Explore Products",
+    "statProducts": "Apps",
+    "statDownloads": "Downloads",
+    "statLanguages": "Languages"
+  },
+  "pages": {
+    "about": {
+      "title": "About Us",
+      "description": "The story, mission, and team behind Akbari Dev Group",
+      "placeholder": "Content for this page will be loaded from the admin dashboard.",
+      "team": "Our Team",
+      "followUs": "Connect with us"
+    },
+    "products": {
+      "title": "Products",
+      "description": "All apps and tools from Akbari Dev Group",
+      "placeholder": "No products published yet.",
+      "emptyHint": "New products will be added soon."
+    },
+    "reviews": {
+      "title": "Reviews",
+      "description": "What users say about our products"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch — support, sales, and general inquiries",
+      "placeholder": "Contact information will be loaded from site settings."
+    }
+  },
+  "products": {
+    "featured": "Featured",
+    "new": "New",
+    "view": "View",
+    "searchPlaceholder": "Search products...",
+    "filterPlatform": "Filter platform",
+    "filterStatus": "Filter status",
+    "allPlatforms": "All platforms",
+    "allStatuses": "All statuses",
+    "statusActive": "Active",
+    "statusArchived": "Archived",
+    "noResults": "No products found",
+    "platform": {
+      "android": "Android",
+      "ios": "iOS",
+      "web": "Web",
+      "desktop": "Desktop",
+      "database": "Database",
+      "other": "Other"
+    },
+    "purpose": "What is this?",
+    "features": "What does it provide?",
+    "screenshots": "Screenshots",
+    "requirements": "System requirements",
+    "howToUse": "How to Use",
+    "openDocumentation": "Open documentation",
+    "downloadGuide": "Download guide",
+    "tabDownload": "Download",
+    "tabReviews": "Reviews",
+    "tabChangelog": "Changelog",
+    "version": "Version",
+    "lastUpdated": "Last updated",
+    "downloads": "downloads",
+    "share": "Share",
+    "linkCopied": "Link copied",
+    "downloadAndroid": "Download APK",
+    "downloadIos": "App Store",
+    "openWeb": "Open Web App",
+    "downloadDesktop": "Download Desktop",
+    "viewDocs": "View docs",
+    "download": "Download",
+    "noDownloads": "No download links available",
+    "qrTitle": "Scan for Android download",
+    "qrHint": "Scan the QR code with your phone camera to download the APK",
+    "noChangelog": "No changelog entries yet",
+    "writeReview": "Write a review",
+    "rating": "Rating",
+    "nameOptional": "Name (optional)",
+    "comment": "Comment",
+    "submitReview": "Submit review",
+    "submitting": "Submitting...",
+    "reviewSubmitted": "Your review was submitted",
+    "reviewPending": "It will appear after admin approval",
+    "submitAnotherReview": "Submit another review",
+    "reviewError": "Failed to submit — please try again",
+    "supportTitle": "Support & contact",
+    "pricingTitle": "Pricing",
+    "howToPay": "How to Pay",
+    "followProduct": "Follow this product",
+    "reportProblem": "Report a problem",
+    "reportProblemHint": "Found a bug or issue? Let us know and we'll look into it.",
+    "reportName": "Name (optional)",
+    "reportEmail": "Email",
+    "reportPhone": "Phone",
+    "reportMessage": "Describe the problem",
+    "reportSubmit": "Send report",
+    "reportSubmitting": "Sending...",
+    "reportSuccess": "Report received — thank you",
+    "reportAnother": "Report another issue",
+    "reportError": "Failed to send — please try again"
+  },
+  "home": {
+    "featuredProducts": "Featured products",
+    "viewAll": "View all",
+    "testimonials": "What people say",
+    "followUs": "Follow us",
+    "howToPay": "How to Pay",
+    "contactCta": "Get in touch",
+    "contactHint": "Questions about our products, pricing, or support? We're here to help.",
+    "contactPage": "Contact page"
+  },
+  "social": {
+    "followUs": "Follow us on social media",
+    "externalLink": "opens in new tab"
+  },
+  "contact": {
+    "inquiryType": "Inquiry type",
+    "typeGeneral": "General inquiry",
+    "typeSupport": "Tech support",
+    "typePricing": "Pricing & sales",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "success": "Message received — we'll respond soon",
+    "sendAnother": "Send another message",
+    "error": "Failed to send — please try again",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram"
+  },
+  "footer": {
+    "copyright": "© {year} Akbari Dev Group",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "followUs": "Follow us",
+    "payments": "Payments"
+  },
+  "common": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "comingSoon": "Coming soon"
+  }
+}

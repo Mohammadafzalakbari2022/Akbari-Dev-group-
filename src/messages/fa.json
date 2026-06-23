@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "title": "گروه توسعه اکبری",
+    "description": "همه محصولات ما در یک مکان — ساده، سریع، قابل اعتماد"
+  },
+  "brand": {
+    "name": "گروه توسعه اکبری",
+    "shortName": "Akbari Dev Group",
+    "tagline": "همه محصولات ما در یک مکان — ساده، سریع، قابل اعتماد"
+  },
+  "nav": {
+    "about": "درباره ما",
+    "products": "محصولات",
+    "reviews": "نظرات",
+    "contact": "تماس"
+  },
+  "theme": {
+    "light": "روشن",
+    "dark": "تاریک",
+    "system": "سیستم",
+    "toggle": "تغییر تم"
+  },
+  "hero": {
+    "headline": "گروه توسعه اکبری",
+    "subheadline": "ما اپلیکیشن‌های کاربردی برای مردم افغانستان می‌سازیم — ساده، سریع و قابل اعتماد.",
+    "ctaAbout": "درباره ما",
+    "ctaProducts": "مشاهده محصولات",
+    "statProducts": "محصول",
+    "statDownloads": "دانلود",
+    "statLanguages": "زبان"
+  },
+  "pages": {
+    "about": {
+      "title": "درباره ما",
+      "description": "داستان، مأموریت و تیم گروه توسعه اکبری",
+      "placeholder": "محتوای این صفحه از داشبورد مدیریت بارگذاری می‌شود.",
+      "team": "تیم ما",
+      "followUs": "با ما در ارتباط باشید"
+    },
+    "products": {
+      "title": "محصولات",
+      "description": "همه اپلیکیشن‌ها و ابزارهای گروه توسعه اکبری",
+      "placeholder": "هنوز محصولی منتشر نشده است.",
+      "emptyHint": "به زودی محصولات جدید اضافه می‌شوند."
+    },
+    "reviews": {
+      "title": "نظرات",
+      "description": "نظرات کاربران درباره محصولات ما"
+    },
+    "contact": {
+      "title": "تماس",
+      "description": "با ما در تماس باشید — پشتیبانی، فروش و سوالات عمومی",
+      "placeholder": "اطلاعات تماس از تنظیمات سایت بارگذاری می‌شود."
+    }
+  },
+  "products": {
+    "featured": "ویژه",
+    "new": "جدید",
+    "view": "مشاهده",
+    "searchPlaceholder": "جستجوی محصول...",
+    "filterPlatform": "فیلتر پلتفرم",
+    "filterStatus": "فیلتر وضعیت",
+    "allPlatforms": "همه پلتفرم‌ها",
+    "allStatuses": "همه وضعیت‌ها",
+    "statusActive": "فعال",
+    "statusArchived": "آرشیو",
+    "noResults": "محصولی یافت نشد",
+    "platform": {
+      "android": "اندروید",
+      "ios": "iOS",
+      "web": "وب",
+      "desktop": "دسکتاپ",
+      "database": "پایگاه داده",
+      "other": "سایر"
+    },
+    "purpose": "این محصول چیست؟",
+    "features": "چه امکاناتی دارد؟",
+    "screenshots": "تصاویر",
+    "requirements": "نیازمندی‌های سیستم",
+    "howToUse": "نحوه استفاده",
+    "openDocumentation": "مشاهده مستندات",
+    "downloadGuide": "دانلود راهنما",
+    "tabDownload": "دانلود",
+    "tabReviews": "نظرات",
+    "tabChangelog": "تغییرات",
+    "version": "نسخه",
+    "lastUpdated": "آخرین به‌روزرسانی",
+    "downloads": "دانلود",
+    "share": "اشتراک‌گذاری",
+    "linkCopied": "لینک کپی شد",
+    "downloadAndroid": "دانلود APK",
+    "downloadIos": "App Store",
+    "openWeb": "باز کردن وب‌اپ",
+    "downloadDesktop": "دانلود دسکتاپ",
+    "viewDocs": "مشاهده مستندات",
+    "download": "دانلود",
+    "noDownloads": "لینک دانلود در دسترس نیست",
+    "qrTitle": "اسکن برای دانلود اندروید",
+    "qrHint": "با دوربین گوشی QR را اسکن کنید تا APK را دانلود کنید",
+    "noChangelog": "تغییری ثبت نشده است",
+    "writeReview": "نظر خود را بنویسید",
+    "rating": "امتیاز",
+    "nameOptional": "نام (اختیاری)",
+    "comment": "نظر",
+    "submitReview": "ارسال نظر",
+    "submitting": "در حال ارسال...",
+    "reviewSubmitted": "نظر شما ثبت شد",
+    "reviewPending": "پس از تأیید مدیر نمایش داده می‌شود",
+    "submitAnotherReview": "ارسال نظر دیگر",
+    "reviewError": "خطا در ارسال — دوباره تلاش کنید",
+    "supportTitle": "پشتیبانی و تماس",
+    "pricingTitle": "قیمت",
+    "howToPay": "نحوه پرداخت",
+    "followProduct": "دنبال کردن این محصول",
+    "reportProblem": "گزارش مشکل",
+    "reportProblemHint": "باگ یا مشکلی پیدا کردید؟ به ما اطلاع دهید.",
+    "reportName": "نام (اختیاری)",
+    "reportEmail": "ایمیل",
+    "reportPhone": "تلفن",
+    "reportMessage": "مشکل را توضیح دهید",
+    "reportSubmit": "ارسال گزارش",
+    "reportSubmitting": "در حال ارسال...",
+    "reportSuccess": "گزارش دریافت شد — متشکریم",
+    "reportAnother": "گزارش مشکل دیگر",
+    "reportError": "خطا در ارسال — دوباره تلاش کنید"
+  },
+  "home": {
+    "featuredProducts": "محصولات ویژه",
+    "viewAll": "مشاهده همه",
+    "testimonials": "نظرات کاربران",
+    "followUs": "ما را دنبال کنید",
+    "howToPay": "نحوه پرداخت",
+    "contactCta": "تماس با ما",
+    "contactHint": "سوال درباره محصولات، قیمت یا پشتیبانی دارید؟ در خدمت شما هستیم.",
+    "contactPage": "صفحه تماس"
+  },
+  "social": {
+    "followUs": "ما را در شبکه‌های اجتماعی دنبال کنید",
+    "externalLink": "در تب جدید باز می‌شود"
+  },
+  "contact": {
+    "inquiryType": "نوع درخواست",
+    "typeGeneral": "عمومی",
+    "typeSupport": "پشتیبانی فنی",
+    "typePricing": "قیمت و فروش",
+    "name": "نام",
+    "email": "ایمیل",
+    "phone": "تلفن",
+    "subject": "موضوع",
+    "message": "پیام",
+    "submit": "ارسال",
+    "submitting": "در حال ارسال...",
+    "success": "پیام شما دریافت شد — به زودی پاسخ می‌دهیم",
+    "sendAnother": "ارسال پیام دیگر",
+    "error": "خطا در ارسال — دوباره تلاش کنید",
+    "whatsapp": "واتساپ",
+    "telegram": "تلگرام"
+  },
+  "footer": {
+    "copyright": "© {year} گروه توسعه اکبری",
+    "privacy": "حریم خصوصی",
+    "terms": "شرایط استفاده",
+    "followUs": "دنبال کنید",
+    "payments": "پرداخت"
+  },
+  "common": {
+    "openMenu": "باز کردن منو",
+    "closeMenu": "بستن منو",
+    "language": "زبان",
+    "comingSoon": "به زودی"
+  }
+}

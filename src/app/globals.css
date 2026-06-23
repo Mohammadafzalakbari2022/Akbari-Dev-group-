@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* ─── Design tokens (dark default) ─── */
+:root {
+  --bg-deep: #070b14;
+  --bg-surface: #0f1629;
+  --bg-glass: rgba(255, 255, 255, 0.04);
+  --accent-primary: #00e5be;
+  --accent-secondary: #3b82f6;
+  --accent-warm: #f59e0b;
+  --text-primary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --navbar-height: 4rem;
+  --font-body: "Vazirmatn", "Noto Naskh Arabic", system-ui, sans-serif;
+  --font-display: "Vazirmatn", "Noto Naskh Arabic", system-ui, sans-serif;
+}
+
+.font-en {
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+}
+
+.light {
+  --bg-deep: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-glass: rgba(0, 0, 0, 0.03);
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --border: rgba(0, 0, 0, 0.08);
+}
+
+@theme inline {
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-glass: var(--bg-glass);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-warm: var(--accent-warm);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body), system-ui, sans-serif;
+  min-height: 100dvh;
+}
+
+/* Glass panel utility */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+/* Aurora hero background */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  will-change: transform;
+}
+
+.aurora-blob-primary {
+  width: 55%;
+  height: 55%;
+  top: -8%;
+  inset-inline-start: -8%;
+  background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+}
+
+.aurora-blob-secondary {
+  width: 48%;
+  height: 48%;
+  bottom: -8%;
+  inset-inline-end: -4%;
+  background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+}
+
+.aurora-blob-warm {
+  width: 35%;
+  height: 35%;
+  top: 35%;
+  inset-inline-end: 20%;
+  background: radial-gradient(circle, var(--accent-warm) 0%, transparent 70%);
+  opacity: 0.2;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.4;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .aurora-blob {
+    animation: none !important;
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 639px) {
+  .aurora-blob-warm {
+    display: none;
+  }
+
+  .aurora-blob {
+    opacity: 0.25;
+    filter: blur(60px);
+  }
+}

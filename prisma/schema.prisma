@@ -1,0 +1,337 @@
+// Akbari Dev Group — Supabase PostgreSQL schema
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum ProductStatus {
+  draft
+  published
+  archived
+}
+
+enum PlatformType {
+  android
+  ios
+  web
+  desktop
+  database
+  other
+}
+
+enum GuideType {
+  video
+  pdf
+  steps
+  external_link
+  gallery
+  faq
+}
+
+enum ReviewStatus {
+  pending
+  approved
+  rejected
+}
+
+enum ContactType {
+  general
+  support
+  pricing
+  problem_report
+}
+
+enum ContactStatus {
+  new
+  read
+  resolved
+}
+
+enum PageViewType {
+  home
+  about
+  products_list
+  product_detail
+  contact
+  other
+}
+
+enum GuideViewEventType {
+  video_play
+  pdf_open
+  pdf_download
+  external_click
+  gallery_view
+}
+
+model Product {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  status          ProductStatus @default(draft)
+  featured        Boolean       @default(false)
+  isNew           Boolean       @default(false) @map("is_new")
+  isNewUntil      DateTime?     @map("is_new_until")
+  iconUrl         String?       @map("icon_url")
+  coverUrl        String?       @map("cover_url")
+  nameJson        Json          @map("name_json")
+  taglineJson     Json          @map("tagline_json")
+  purposeJson     Json?         @map("purpose_json")
+  featuresJson    Json?         @map("features_json")
+  requirementsJson Json?        @map("requirements_json")
+  contactJson     Json?         @map("contact_json")
+  socialJson      Json?         @map("social_json")
+  pricingJson     Json?         @map("pricing_json")
+  seoJson         Json?         @map("seo_json")
+  downloadCount   Int           @default(0) @map("download_count")
+  sortOrder       Int           @default(0) @map("sort_order")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+
+  platforms    ProductPlatform[]
+  screenshots  ProductScreenshot[]
+  guides       ProductGuide[]
+  changelog    ProductChangelog[]
+  reviews      Review[]
+  downloadEvents DownloadEvent[]
+  pageViewEvents PageViewEvent[]
+  guideViewEvents GuideViewEvent[]
+  contactSubmissions ContactSubmission[]
+  testimonials Testimonial[]
+
+  @@map("products")
+}
+
+model ProductPlatform {
+  id          String       @id @default(cuid())
+  productId   String       @map("product_id")
+  platform    PlatformType
+  version     String?
+  fileSize    String?      @map("file_size")
+  minOs       String?      @map("min_os")
+  downloadUrl String?      @map("download_url")
+  isActive    Boolean      @default(true) @map("is_active")
+  sortOrder   Int          @default(0) @map("sort_order")
+
+  product        Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  downloadEvents DownloadEvent[]
+
+  @@index([productId])
+  @@map("product_platforms")
+}
+
+model ProductScreenshot {
+  id          String @id @default(cuid())
+  productId   String @map("product_id")
+  url         String
+  captionJson Json?  @map("caption_json")
+  sortOrder   Int    @default(0) @map("sort_order")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_screenshots")
+}
+
+model ProductGuide {
+  id          String    @id @default(cuid())
+  productId   String    @map("product_id")
+  type        GuideType
+  titleJson   Json      @map("title_json")
+  contentJson Json?     @map("content_json")
+  fileUrl     String?   @map("file_url")
+  externalUrl String?   @map("external_url")
+  sortOrder   Int       @default(0) @map("sort_order")
+  isPublished Boolean   @default(false) @map("is_published")
+
+  product         Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
+  guideViewEvents GuideViewEvent[]
+
+  @@index([productId])
+  @@map("product_guides")
+}
+
+model ProductChangelog {
+  id        String        @id @default(cuid())
+  productId String        @map("product_id")
+  version   String
+  date      DateTime
+  notesJson Json          @map("notes_json")
+  platform  PlatformType?
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_changelog")
+}
+
+model Review {
+  id         String       @id @default(cuid())
+  productId  String       @map("product_id")
+  authorName String?      @map("author_name")
+  rating     Int
+  comment    String?
+  status     ReviewStatus @default(pending)
+  createdAt  DateTime     @default(now()) @map("created_at")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([status])
+  @@map("reviews")
+}
+
+model TeamMember {
+  id        String @id @default(cuid())
+  nameJson  Json   @map("name_json")
+  roleJson  Json   @map("role_json")
+  bioJson   Json?  @map("bio_json")
+  photoUrl  String? @map("photo_url")
+  socialJson Json? @map("social_json")
+  sortOrder Int    @default(0) @map("sort_order")
+
+  @@map("team_members")
+}
+
+model Page {
+  id          String  @id @default(cuid())
+  slug        String  @unique
+  titleJson   Json    @map("title_json")
+  contentJson Json    @map("content_json")
+  published   Boolean @default(false)
+
+  @@map("pages")
+}
+
+model SiteSetting {
+  key       String @id
+  valueJson Json   @map("value_json")
+
+  @@map("site_settings")
+}
+
+model HeroSetting {
+  id                  String @id @default("default")
+  headlineJson        Json?  @map("headline_json")
+  subheadlineJson     Json?  @map("subheadline_json")
+  statProducts        Int?   @map("stat_products")
+  statDownloads       Int?   @map("stat_downloads")
+  featuredProductIds  Json?  @map("featured_product_ids")
+
+  @@map("hero_settings")
+}
+
+model ContactSubmission {
+  id        String        @id @default(cuid())
+  type      ContactType
+  productId String?       @map("product_id")
+  name      String?
+  email     String?
+  phone     String?
+  subject   String?
+  message   String
+  status    ContactStatus @default(new)
+  createdAt DateTime      @default(now()) @map("created_at")
+
+  product Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+  @@map("contact_submissions")
+}
+
+model Testimonial {
+  id         String  @id @default(cuid())
+  productId  String? @map("product_id")
+  authorName String  @map("author_name")
+  roleJson   Json?   @map("role_json")
+  quoteJson  Json    @map("quote_json")
+  avatarUrl  String? @map("avatar_url")
+  sortOrder  Int     @default(0) @map("sort_order")
+  published  Boolean @default(false)
+
+  product Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@map("testimonials")
+}
+
+model AdminActivityLog {
+  id           String   @id @default(cuid())
+  adminEmail   String   @map("admin_email")
+  action       String
+  entityType   String   @map("entity_type")
+  entityId     String?  @map("entity_id")
+  metadataJson Json?    @map("metadata_json")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@map("admin_activity_log")
+}
+
+model DownloadEvent {
+  id          String   @id @default(cuid())
+  productId   String   @map("product_id")
+  platformId  String   @map("platform_id")
+  locale      String?
+  countryCode String?  @map("country_code")
+  referrer    String?
+  utmSource   String?  @map("utm_source")
+  utmMedium   String?  @map("utm_medium")
+  utmCampaign String?  @map("utm_campaign")
+  ipHash      String?  @map("ip_hash")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  product  Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  platform ProductPlatform @relation(fields: [platformId], references: [id], onDelete: Cascade)
+
+  @@index([productId, createdAt])
+  @@index([platformId, createdAt])
+  @@index([createdAt])
+  @@map("download_events")
+}
+
+model PageViewEvent {
+  id          String       @id @default(cuid())
+  path        String
+  pageType    PageViewType @map("page_type")
+  productId   String?      @map("product_id")
+  locale      String?
+  referrer    String?
+  utmSource   String?      @map("utm_source")
+  utmMedium   String?      @map("utm_medium")
+  utmCampaign String?      @map("utm_campaign")
+  countryCode String?      @map("country_code")
+  visitorHash String?      @map("visitor_hash")
+  createdAt   DateTime     @default(now()) @map("created_at")
+
+  product Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([productId, createdAt])
+  @@index([pageType, createdAt])
+  @@map("page_view_events")
+}
+
+model GuideViewEvent {
+  id          String             @id @default(cuid())
+  productId   String             @map("product_id")
+  guideId     String             @map("guide_id")
+  eventType   GuideViewEventType @map("event_type")
+  locale      String?
+  countryCode String?            @map("country_code")
+  createdAt   DateTime           @default(now()) @map("created_at")
+
+  product Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  guide   ProductGuide @relation(fields: [guideId], references: [id], onDelete: Cascade)
+
+  @@index([productId, createdAt])
+  @@index([guideId, eventType])
+  @@map("guide_view_events")
+}
