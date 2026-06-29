@@ -14,6 +14,8 @@ export function getLocaleAwarePaths(path: string, locales = routing.locales) {
 
 export function revalidatePublicPaths(paths: string[]) {
   for (const path of paths) {
-    revalidatePath(path);
+    for (const localePath of getLocaleAwarePaths(path)) {
+      revalidatePath(localePath);
+    }
   }
 }
