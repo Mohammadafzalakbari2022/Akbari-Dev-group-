@@ -5,6 +5,7 @@ import { Prisma } from "@prisma/client";
 import { getPrisma } from "@/lib/prisma";
 import { requireAdmin } from "./auth";
 import { logAdminActivity } from "./activity";
+import { revalidatePublicPaths } from "./revalidate";
 import type { ProductFormData } from "./types";
 import type { LocalizedString } from "@/lib/i18n-json";
 import type { PaymentSettings } from "@/lib/data/payments";
@@ -121,7 +122,7 @@ export async function saveProduct(
     });
 
     revalidatePath("/admin/products");
-    revalidatePath("/");
+    revalidatePublicPaths(["/", "/products", `/products/${data.slug}`]);
     return { ok: true, id: productId };
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Failed to save product";
@@ -148,6 +149,9 @@ export async function deleteProduct(id: string): Promise<ActionResult> {
       metadata: { slug: product?.slug },
     });
     revalidatePath("/admin/products");
+    if (product?.slug) {
+      revalidatePublicPaths(["/", "/products", `/products/${product.slug}`]);
+    }
     return { ok: true };
   } catch {
     return { ok: false, error: "Failed to delete product" };
@@ -172,6 +176,7 @@ export async function updateProductStatus(
       metadata: { status },
     });
     revalidatePath("/admin/products");
+    revalidatePublicPaths(["/", "/products"]);
     return { ok: true };
   } catch {
     return { ok: false, error: "Failed to update status" };
@@ -244,7 +249,7 @@ export async function savePage(
       entityId: slug,
     });
     revalidatePath("/admin/pages");
-    revalidatePath("/about");
+    revalidatePublicPaths(["/about", "/privacy", "/terms"]);
     return { ok: true };
   } catch {
     return { ok: false, error: "Failed to save page" };
@@ -284,6 +289,7 @@ export async function saveTeamMember(data: TeamMemberForm): Promise<ActionResult
         entityType: "team_member",
         entityId: data.id,
       });
+      revalidatePublicPaths(["/about"]);
       return { ok: true, id: data.id };
     }
 
@@ -295,6 +301,7 @@ export async function saveTeamMember(data: TeamMemberForm): Promise<ActionResult
       entityId: created.id,
     });
     revalidatePath("/admin/team");
+    revalidatePublicPaths(["/about"]);
     return { ok: true, id: created.id };
   } catch {
     return { ok: false, error: "Failed to save team member" };
@@ -315,6 +322,7 @@ export async function deleteTeamMember(id: string): Promise<ActionResult> {
       entityId: id,
     });
     revalidatePath("/admin/team");
+    revalidatePublicPaths(["/about"]);
     return { ok: true };
   } catch {
     return { ok: false, error: "Failed to delete team member" };
@@ -360,7 +368,7 @@ export async function saveHeroSettings(data: HeroFormData): Promise<ActionResult
       entityId: "default",
     });
     revalidatePath("/admin/hero");
-    revalidatePath("/");
+    revalidatePublicPaths(["/"]);
     return { ok: true };
   } catch {
     return { ok: false, error: "Failed to save hero settings" };
@@ -424,6 +432,7 @@ export async function saveSiteSettings(data: SiteSettingsForm): Promise<ActionRe
       entityType: "site_settings",
     });
     revalidatePath("/admin/settings");
+    revalidatePublicPaths(["/", "/about", "/contact", "/privacy", "/terms"]);
     return { ok: true };
   } catch {
     return { ok: false, error: "Failed to save settings" };
@@ -511,7 +520,7 @@ export async function saveTestimonial(
       entityId: data.id,
     });
     revalidatePath("/admin/testimonials");
-    revalidatePath("/");
+    revalidatePublicPaths(["/"]);
     return { ok: true };
   } catch {
     return { ok: false, error: "Failed to save testimonial" };
@@ -532,7 +541,7 @@ export async function deleteTestimonial(id: string): Promise<ActionResult> {
       entityId: id,
     });
     revalidatePath("/admin/testimonials");
-    revalidatePath("/");
+    revalidatePublicPaths(["/"]);
     return { ok: true };
   } catch {
     return { ok: false, error: "Failed to delete testimonial" };
