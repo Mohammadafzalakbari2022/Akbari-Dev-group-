@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-
+import { getPublishedTestimonials } from "@/lib/data/testimonials";
+import { pickLocale } from "@/lib/i18n-json";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 type Props = {
@@ -24,22 +25,38 @@ export default async function ReviewsPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "pages.reviews" });
-  const tCommon = await getTranslations({ locale, namespace: "common" });
+  const testimonials = await getPublishedTestimonials();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="max-w-3xl">
+      <div className="max-w-4xl">
         <h1 className="text-3xl font-bold text-text-primary sm:text-4xl">
           {t("title")}
         </h1>
         <p className="mt-4 text-lg text-text-muted">{t("description")}</p>
-        <div className="mt-10 rounded-xl glass-panel p-8 text-center">
-          <p className="text-text-muted">{tCommon("comingSoon")}</p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {testimonials.map((item) => (
+            <article key={item.id} className="rounded-xl glass-panel p-6">
+              <p className="text-sm text-accent-primary">
+                “{pickLocale(item.quoteJson, locale)}”
+              </p>
+              <div className="mt-4">
+                <p className="font-semibold text-text-primary">{item.authorName}</p>
+                <p className="text-sm text-text-muted">
+                  {pickLocale(item.roleJson, locale)}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8">
           <Link
             href="/products"
-            className="mt-4 inline-block text-sm text-accent-primary hover:underline"
+            className="text-sm text-accent-primary hover:underline"
           >
-            →
+            {t("title")} →
           </Link>
         </div>
       </div>

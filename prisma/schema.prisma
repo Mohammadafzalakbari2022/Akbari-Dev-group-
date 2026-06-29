@@ -8,6 +8,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 enum ProductStatus {
@@ -71,38 +72,38 @@ enum GuideViewEventType {
 }
 
 model Product {
-  id              String        @id @default(cuid())
-  slug            String        @unique
-  status          ProductStatus @default(draft)
-  featured        Boolean       @default(false)
-  isNew           Boolean       @default(false) @map("is_new")
-  isNewUntil      DateTime?     @map("is_new_until")
-  iconUrl         String?       @map("icon_url")
-  coverUrl        String?       @map("cover_url")
-  nameJson        Json          @map("name_json")
-  taglineJson     Json          @map("tagline_json")
-  purposeJson     Json?         @map("purpose_json")
-  featuresJson    Json?         @map("features_json")
-  requirementsJson Json?        @map("requirements_json")
-  contactJson     Json?         @map("contact_json")
-  socialJson      Json?         @map("social_json")
-  pricingJson     Json?         @map("pricing_json")
-  seoJson         Json?         @map("seo_json")
-  downloadCount   Int           @default(0) @map("download_count")
-  sortOrder       Int           @default(0) @map("sort_order")
-  createdAt       DateTime      @default(now()) @map("created_at")
-  updatedAt       DateTime      @updatedAt @map("updated_at")
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  status           ProductStatus @default(draft)
+  featured         Boolean       @default(false)
+  isNew            Boolean       @default(false) @map("is_new")
+  isNewUntil       DateTime?     @map("is_new_until")
+  iconUrl          String?       @map("icon_url")
+  coverUrl         String?       @map("cover_url")
+  nameJson         Json          @map("name_json")
+  taglineJson      Json          @map("tagline_json")
+  purposeJson      Json?         @map("purpose_json")
+  featuresJson     Json?         @map("features_json")
+  requirementsJson Json?         @map("requirements_json")
+  contactJson      Json?         @map("contact_json")
+  socialJson       Json?         @map("social_json")
+  pricingJson      Json?         @map("pricing_json")
+  seoJson          Json?         @map("seo_json")
+  downloadCount    Int           @default(0) @map("download_count")
+  sortOrder        Int           @default(0) @map("sort_order")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  updatedAt        DateTime      @updatedAt @map("updated_at")
 
-  platforms    ProductPlatform[]
-  screenshots  ProductScreenshot[]
-  guides       ProductGuide[]
-  changelog    ProductChangelog[]
-  reviews      Review[]
-  downloadEvents DownloadEvent[]
-  pageViewEvents PageViewEvent[]
-  guideViewEvents GuideViewEvent[]
+  platforms          ProductPlatform[]
+  screenshots        ProductScreenshot[]
+  guides             ProductGuide[]
+  changelog          ProductChangelog[]
+  reviews            Review[]
+  downloadEvents     DownloadEvent[]
+  pageViewEvents     PageViewEvent[]
+  guideViewEvents    GuideViewEvent[]
   contactSubmissions ContactSubmission[]
-  testimonials Testimonial[]
+  testimonials       Testimonial[]
 
   @@map("products")
 }
@@ -187,13 +188,13 @@ model Review {
 }
 
 model TeamMember {
-  id        String @id @default(cuid())
-  nameJson  Json   @map("name_json")
-  roleJson  Json   @map("role_json")
-  bioJson   Json?  @map("bio_json")
-  photoUrl  String? @map("photo_url")
-  socialJson Json? @map("social_json")
-  sortOrder Int    @default(0) @map("sort_order")
+  id         String  @id @default(cuid())
+  nameJson   Json    @map("name_json")
+  roleJson   Json    @map("role_json")
+  bioJson    Json?   @map("bio_json")
+  photoUrl   String? @map("photo_url")
+  socialJson Json?   @map("social_json")
+  sortOrder  Int     @default(0) @map("sort_order")
 
   @@map("team_members")
 }
@@ -216,12 +217,12 @@ model SiteSetting {
 }
 
 model HeroSetting {
-  id                  String @id @default("default")
-  headlineJson        Json?  @map("headline_json")
-  subheadlineJson     Json?  @map("subheadline_json")
-  statProducts        Int?   @map("stat_products")
-  statDownloads       Int?   @map("stat_downloads")
-  featuredProductIds  Json?  @map("featured_product_ids")
+  id                 String @id @default("default")
+  headlineJson       Json?  @map("headline_json")
+  subheadlineJson    Json?  @map("subheadline_json")
+  statProducts       Int?   @map("stat_products")
+  statDownloads      Int?   @map("stat_downloads")
+  featuredProductIds Json?  @map("featured_product_ids")
 
   @@map("hero_settings")
 }
