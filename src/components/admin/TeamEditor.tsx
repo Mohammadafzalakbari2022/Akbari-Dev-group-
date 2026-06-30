@@ -24,7 +24,7 @@ type Props = {
 
 export function TeamEditor({ members: initial }: Props) {
   const router = useRouter();
-  const [members, setMembers] = useState(initial);
+  const [members] = useState(initial);
   const [editing, setEditing] = useState<Member | null>(null);
   const [saving, setSaving] = useState(false);
 

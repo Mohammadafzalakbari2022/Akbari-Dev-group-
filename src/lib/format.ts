@@ -1,5 +1,3 @@
-import type { Locale } from "@/i18n/routing";
-
 export function formatDownloadCount(count: number, locale: string): string {
   if (count >= 1_000_000) {
     const val = (count / 1_000_000).toFixed(1).replace(/\.0$/, "");

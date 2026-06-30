@@ -1,28 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import {
-  ClipboardList,
-  Ruler,
-  Bell,
-  Fuel,
-  BarChart3,
-  Globe,
-  Sparkles,
-  type LucideIcon,
-} from "lucide-react";
 import { pickLocale } from "@/lib/i18n-json";
 import type { ProductGuideDto } from "@/lib/data/types";
-
-const iconMap: Record<string, LucideIcon> = {
-  "clipboard-list": ClipboardList,
-  ruler: Ruler,
-  bell: Bell,
-  fuel: Fuel,
-  "bar-chart": BarChart3,
-  globe: Globe,
-  sparkles: Sparkles,
-};
 
 type HowToUseSectionProps = {
   guides: ProductGuideDto[];

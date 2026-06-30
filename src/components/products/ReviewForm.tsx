@@ -12,7 +12,7 @@ type ReviewFormProps = {
   locale: string;
 };
 
-export function ReviewForm({ productId, locale }: ReviewFormProps) {
+export function ReviewForm({ productId }: ReviewFormProps) {
   const t = useTranslations("products");
   const [rating, setRating] = useState(5);
   const [authorName, setAuthorName] = useState("");

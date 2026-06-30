@@ -13,8 +13,6 @@ import {
   saveSiteSettings,
   type SiteSettingsForm,
 } from "@/lib/admin/actions";
-import { emptyLocale } from "@/lib/admin/types";
-import { DEFAULT_PAYMENT_SETTINGS } from "@/lib/data/payments";
 
 type Props = {
   initial: SiteSettingsForm;
