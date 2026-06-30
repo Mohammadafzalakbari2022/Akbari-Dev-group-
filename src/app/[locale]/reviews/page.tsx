@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Quote } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { getPublishedTestimonials } from "@/lib/data/testimonials";
 import { pickLocale } from "@/lib/i18n-json";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import { RemoteImage } from "@/components/ui/RemoteImage";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -38,14 +40,30 @@ export default async function ReviewsPage({ params }: Props) {
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {testimonials.map((item) => (
             <article key={item.id} className="rounded-xl glass-panel p-6">
-              <p className="text-sm text-accent-primary">
+              <Quote className="h-6 w-6 text-accent-primary/40 mb-3" />
+              <p className="text-sm text-text-primary leading-relaxed">
                 “{pickLocale(item.quoteJson, locale)}”
               </p>
-              <div className="mt-4">
-                <p className="font-semibold text-text-primary">{item.authorName}</p>
-                <p className="text-sm text-text-muted">
-                  {pickLocale(item.roleJson, locale)}
-                </p>
+              <div className="mt-4 flex items-center gap-3">
+                {item.avatarUrl ? (
+                  <RemoteImage
+                    src={item.avatarUrl}
+                    alt={item.authorName}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-primary/15 text-sm font-bold text-accent-primary shrink-0">
+                    {item.authorName.charAt(0)}
+                  </span>
+                )}
+                <div>
+                  <p className="font-semibold text-text-primary">{item.authorName}</p>
+                  <p className="text-sm text-text-muted">
+                    {pickLocale(item.roleJson, locale)}
+                  </p>
+                </div>
               </div>
             </article>
           ))}

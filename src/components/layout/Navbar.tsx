@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -16,7 +17,11 @@ const navItems = [
   { href: "/contact" as const, key: "contact" as const },
 ];
 
-export function Navbar() {
+type NavbarProps = {
+  logoUrl?: string;
+};
+
+export function Navbar({ logoUrl }: NavbarProps) {
   const t = useTranslations("nav");
   const tBrand = useTranslations("brand");
   const tCommon = useTranslations("common");
@@ -29,9 +34,20 @@ export function Navbar() {
           href="/"
           className="flex items-center gap-2 font-semibold text-text-primary shrink-0"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-primary/15 text-sm font-bold text-accent-primary">
-            A
-          </span>
+          {logoUrl ? (
+            <Image
+              src={logoUrl}
+              alt={tBrand("shortName")}
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-lg object-cover"
+              unoptimized
+            />
+          ) : (
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-primary/15 text-sm font-bold text-accent-primary">
+              A
+            </span>
+          )}
           <span className="hidden sm:inline">{tBrand("shortName")}</span>
         </Link>
 

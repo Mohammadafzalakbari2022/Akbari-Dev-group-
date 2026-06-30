@@ -151,6 +151,19 @@ export default async function ProductDetailPage({ params }: Props) {
         <ShareButton url={pageUrl} title={name} />
       </header>
 
+      {product.coverUrl && (
+        <div className="relative mt-8 -mx-4 sm:-mx-6 lg:-mx-8">
+          <RemoteImage
+            src={product.coverUrl}
+            alt=""
+            width={1200}
+            height={400}
+            className="w-full h-48 sm:h-64 object-cover"
+            priority
+          />
+        </div>
+      )}
+
       <div className="space-y-16 py-10">
         {purpose && (
           <section>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Trash2 } from "lucide-react";
 import { LocalizedField } from "@/components/admin/LocalizedField";
+import { FileUploadField } from "@/components/admin/FileUploadField";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -129,15 +130,12 @@ export function TeamEditor({ members: initial }: Props) {
             onChange={(v) => setEditing({ ...editing, bio_json: v })}
             multiline
           />
-          <div className="space-y-2">
-            <Label>Photo URL</Label>
-            <Input
-              value={editing.photo_url}
-              onChange={(e) =>
-                setEditing({ ...editing, photo_url: e.target.value })
-              }
-            />
-          </div>
+          <FileUploadField
+            label="Photo"
+            value={editing.photo_url}
+            onChange={(v) => setEditing({ ...editing, photo_url: v })}
+            folder="team"
+          />
           <div className="space-y-2">
             <Label>Sort order</Label>
             <Input

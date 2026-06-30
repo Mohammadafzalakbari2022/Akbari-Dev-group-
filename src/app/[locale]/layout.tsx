@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -14,6 +15,13 @@ export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteSettings = await getSiteSettings();
+  return {
+    icons: siteSettings.favicon ? { icon: siteSettings.favicon } : undefined,
+  };
 }
 
 export default async function LocaleLayout({
@@ -46,7 +54,7 @@ export default async function LocaleLayout({
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
             <AnalyticsProvider locale={locale}>
-              <Navbar />
+              <Navbar logoUrl={siteSettings.logo} />
               <main className="flex-1">
                 {maintenance ? (
                   <MaintenanceScreen settings={siteSettings} locale={locale} />
