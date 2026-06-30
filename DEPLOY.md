@@ -1,13 +1,13 @@
 # Deployment Guide — Akbari Dev Group Hub
 
-Complete deployment instructions for **Vercel** (frontend) + **Supabase** (backend).
+Complete deployment instructions for **Render** (frontend) + **Supabase** (backend).
 
 ---
 
 ## Architecture
 
 ```
-Browser → Vercel (Next.js 16) → Supabase PostgreSQL (Prisma)
+Browser → Render (Next.js 16) → Supabase PostgreSQL (Prisma)
                               → Supabase Auth (admin login)
                               → Supabase Storage (media uploads)
 ```
@@ -96,36 +96,39 @@ Creates Khayat, StationPlus, hero, about, team, testimonials, reviews, guides, l
 
 ---
 
-## Part 2 — Vercel (frontend)
+## Part 2 — Render (frontend)
 
-### 2.1 Import repository
+### 2.1 Create Web Service
 
 1. Push code to GitHub
-2. [vercel.com/new](https://vercel.com/new) → Import `akbari-dev-hub`
-3. Framework: **Next.js** (auto-detected)
-
-### 2.2 Environment variables
-
-In **Project Settings → Environment Variables**, add all variables from the table above for **Production** (and Preview if needed).
-
-Set `NEXT_PUBLIC_SITE_URL` to your production domain.
-
-### 2.3 Build settings
+2. Go to [dashboard.render.com](https://dashboard.render.com)
+3. Click **New +** → **Web Service**
+4. Connect your GitHub repository and select `Akbari-Dev-group-`
+5. Configure:
 
 | Setting | Value |
 |---------|-------|
-| Build command | `npm run build` |
-| Output directory | `.next` (default) |
-| Install command | `npm install` |
-| Node.js version | 20.x |
+| **Name** | `akbari-dev-hub` |
+| **Region** | Closest to your users (e.g. Singapore) |
+| **Branch** | `master` |
+| **Runtime** | **Node** |
+| **Build Command** | `npm install && npm run build` |
+| **Start Command** | `npm run start` |
+| **Plan** | Free or Starter |
 
 Build runs `prisma generate && next build --webpack` (webpack required for Serwist PWA).
 
-### 2.4 Deploy
+### 2.2 Environment variables
 
-Click **Deploy**. First deploy may succeed with empty data until you seed the production database.
+In **Dashboard → Web Service → Environment**, add all variables from the table above.
 
-### 2.5 Post-deploy checklist
+Set `NEXT_PUBLIC_SITE_URL` to your Render domain (e.g. `https://akbari-dev-hub.onrender.com`).
+
+### 2.3 Deploy
+
+Click **Create Web Service**. Render will build and deploy automatically. First deploy may succeed with empty data until you seed the production database.
+
+### 2.4 Post-deploy checklist
 
 ```bash
 # Against production DB (with prod env vars loaded)
@@ -135,16 +138,21 @@ npm run db:seed
 
 - [ ] Create admin user in Supabase Auth
 - [ ] Create `media` Storage bucket
+- [ ] Configure Supabase Auth URL Configuration (add your Render URL)
 - [ ] Test `/fa`, `/fa/products`, `/admin/login`
 - [ ] Verify `/sitemap.xml` and `/robots.txt`
 - [ ] Test PWA install on mobile
 
-### 2.6 Custom domain
+### 2.5 Custom domain
 
-1. **Project Settings → Domains** → Add domain
-2. Configure DNS per Vercel instructions
+1. Render **Dashboard → Web Service → Settings → Custom Domain**
+2. Add your domain and configure DNS per Render instructions
 3. Update `NEXT_PUBLIC_SITE_URL` to match
-4. Redeploy
+4. Update Supabase **Auth URL Configuration** with the new domain
+
+### 2.6 Service Worker headers
+
+Render's Free and Starter plans don't support custom response headers. The PWA service worker (`/sw.js`) is served with default cache headers, which may affect PWA update behavior. For full control, upgrade to a Render plan that supports custom headers or use a CDN in front of Render.
 
 ---
 
@@ -192,26 +200,28 @@ npm run db:studio    # Prisma Studio GUI
 
 ## Troubleshooting
 
-### Build fails on Vercel
+### Build fails on Render
 
-- Ensure all env vars are set (build needs `DATABASE_URL` for `prisma generate` only — can use a valid connection string even if DB is empty)
+- Ensure all env vars are set in Render dashboard → Environment
 - Check build logs for TypeScript errors: `npm run build` locally first
+- Render free plan may timeout on large builds — consider a paid plan
 
 ### `P1001: Can't reach database server`
 
 - Verify `DATABASE_URL` and `DIRECT_URL`
 - Check Supabase project is not paused (free tier)
-- Add your IP to allowed list if using network restrictions
+- Add Render's outbound IP to allowed list if using network restrictions
 
 ### Admin login redirects back to login
 
 - Confirm `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` match your project
 - User must exist in Supabase Auth and be confirmed
+- Check **Auth URL Configuration** in Supabase — add your Render URL
 
 ### Products page shows mock data in production
 
 - Database not connected or empty — run `npm run db:seed`
-- Check `DATABASE_URL` in Vercel env vars
+- Check `DATABASE_URL` in Render env vars
 
 ### Upload returns 503
 
@@ -224,7 +234,7 @@ npm run db:studio    # Prisma Studio GUI
 
 ### PWA not installing
 
-- Requires HTTPS in production
+- Requires HTTPS in production (Render provides this automatically)
 - Check `/manifest.webmanifest` loads
 - `public/sw.js` is generated at build time
 
@@ -233,9 +243,9 @@ npm run db:studio    # Prisma Studio GUI
 ## Security checklist
 
 - [ ] Never commit `.env.local` or real keys (gitignored)
-- [ ] `SUPABASE_SERVICE_ROLE_KEY` only in server env (Vercel, not `NEXT_PUBLIC_*`)
+- [ ] `SUPABASE_SERVICE_ROLE_KEY` only in server env (not `NEXT_PUBLIC_*`)
 - [ ] Rotate keys if accidentally exposed
-- [ ] Use strong admin password; enable 2FA when available (Phase 2)
+- [ ] Use strong admin password; enable 2FA when available
 
 ---
 
