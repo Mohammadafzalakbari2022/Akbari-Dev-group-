@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const alt = "Akbari Dev Group";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -20,14 +20,7 @@ export default function OpenGraphImage() {
           color: "#F1F5F9",
         }}
       >
-        <div
-          style={{
-            fontSize: 28,
-            color: "#00E5BE",
-            marginBottom: 16,
-            fontWeight: 600,
-          }}
-        >
+        <div style={{ fontSize: 28, color: "#00E5BE", marginBottom: 16, fontWeight: 600 }}>
           Akbari Dev Group
         </div>
         <div style={{ fontSize: 56, fontWeight: 700, lineHeight: 1.15, maxWidth: 900 }}>
