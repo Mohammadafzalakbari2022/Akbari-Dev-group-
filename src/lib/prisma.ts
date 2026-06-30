@@ -24,7 +24,7 @@ function createPrismaClient(): PrismaClient | null {
   }
 
   process.env.DATABASE_URL = databaseUrl;
-  if (!process.env.DIRECT_URL && process.env.DIRECT_URL !== undefined) {
+  if (!process.env.DIRECT_URL) {
     process.env.DIRECT_URL = databaseUrl;
   }
 

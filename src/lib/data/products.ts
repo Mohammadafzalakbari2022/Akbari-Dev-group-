@@ -143,7 +143,8 @@ export async function getPublishedProducts(): Promise<ProductListItem[]> {
         reviewCount: ratings.length,
       };
     });
-  } catch {
+  } catch (err) {
+    console.error("getPublishedProducts failed:", err);
     return MOCK_PRODUCT_LIST;
   }
 }
@@ -163,7 +164,8 @@ export async function getProductBySlug(slug: string): Promise<ProductDto | null>
     }
 
     return mapProduct(product);
-  } catch {
+  } catch (err) {
+    console.error("getProductBySlug failed:", err);
     return getMockProductBySlug(slug);
   }
 }
@@ -223,7 +225,8 @@ export async function getFeaturedProducts(
         reviewCount: ratings.length,
       };
     });
-  } catch {
+  } catch (err) {
+    console.error("getFeaturedProducts failed:", err);
     return MOCK_PRODUCT_LIST.filter((p) => p.featured);
   }
 }
@@ -273,7 +276,8 @@ export async function getProductSlugs(): Promise<string[]> {
     return products.length > 0
       ? products.map((p) => p.slug)
       : MOCK_PRODUCTS.map((p) => p.slug);
-  } catch {
+  } catch (err) {
+    console.error("getProductSlugs failed:", err);
     return MOCK_PRODUCTS.map((p) => p.slug);
   }
 }

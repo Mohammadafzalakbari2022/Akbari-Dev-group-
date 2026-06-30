@@ -20,6 +20,9 @@
 # production
 /build
 
+# serwist build artifact
+/public/sw.js
+
 # misc
 .DS_Store
 *.pem

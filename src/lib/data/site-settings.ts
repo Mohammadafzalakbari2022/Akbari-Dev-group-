@@ -94,7 +94,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
           {},
       },
     };
-  } catch {
+  } catch (err) {
+    console.error("getSiteSettings failed:", err);
     return DEFAULT_SETTINGS;
   }
 }
@@ -105,7 +106,8 @@ export async function getPageBySlug(slug: string) {
 
   try {
     return await prisma.page.findUnique({ where: { slug } });
-  } catch {
+  } catch (err) {
+    console.error("getPageBySlug failed:", err);
     return null;
   }
 }
@@ -118,7 +120,8 @@ export async function getLegalPages() {
     return await prisma.page.findMany({
       where: { slug: { in: ["privacy", "terms"] }, published: true },
     });
-  } catch {
+  } catch (err) {
+    console.error("getLegalPages failed:", err);
     return [];
   }
 }

@@ -70,7 +70,8 @@ export async function getPublishedTestimonials(): Promise<TestimonialDto[]> {
         ? (t.product.nameJson as LocalizedString)
         : null,
     }));
-  } catch {
+  } catch (err) {
+    console.error("getPublishedTestimonials failed:", err);
     return MOCK_TESTIMONIALS;
   }
 }
@@ -84,7 +85,8 @@ export async function getAllTestimonials() {
       orderBy: { sortOrder: "asc" },
       include: { product: { select: { nameJson: true, slug: true } } },
     });
-  } catch {
+  } catch (err) {
+    console.error("getAllTestimonials failed:", err);
     return [];
   }
 }

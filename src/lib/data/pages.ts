@@ -21,7 +21,8 @@ export async function getAboutSections(): Promise<AboutSection[]> {
       titleJson: p.titleJson,
       contentJson: p.contentJson,
     }));
-  } catch {
+  } catch (err) {
+    console.error("getAboutSections failed:", err);
     return MOCK_ABOUT_SECTIONS;
   }
 }
@@ -38,7 +39,8 @@ export async function getTeamMembers(): Promise<TeamMemberDto[]> {
     if (members.length === 0) return MOCK_TEAM_MEMBERS;
 
     return members;
-  } catch {
+  } catch (err) {
+    console.error("getTeamMembers failed:", err);
     return MOCK_TEAM_MEMBERS;
   }
 }

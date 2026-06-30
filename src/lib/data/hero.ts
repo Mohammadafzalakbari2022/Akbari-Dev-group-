@@ -48,7 +48,8 @@ export async function getHeroSettings(): Promise<HeroSettingsDto> {
           ? featuredProducts
           : MOCK_HERO_SETTINGS.featuredProducts,
     };
-  } catch {
+  } catch (err) {
+    console.error("getHeroSettings failed:", err);
     return {
       headlineJson: MOCK_HERO_SETTINGS.headlineJson,
       subheadlineJson: MOCK_HERO_SETTINGS.subheadlineJson,

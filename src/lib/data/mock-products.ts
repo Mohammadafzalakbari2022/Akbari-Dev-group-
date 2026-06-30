@@ -1,6 +1,6 @@
 import type { ProductDto, ProductListItem } from "./types";
 
-const now = new Date("2026-03-15");
+const now = new Date();
 
 export const MOCK_PRODUCTS: ProductDto[] = [
   {

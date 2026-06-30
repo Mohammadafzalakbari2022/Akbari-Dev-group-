@@ -1,7 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { routing } from "@/i18n/routing";
 
-export function getLocaleAwarePaths(path: string, locales = routing.locales) {
+export function getLocaleAwarePaths(path: string, locales: readonly string[] = routing.locales) {
   const normalized = path === "/" ? "" : path;
   const paths = [path];
 

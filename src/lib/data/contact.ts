@@ -48,7 +48,8 @@ export async function getContactSubmissions(
       status: r.status,
       createdAt: r.createdAt,
     }));
-  } catch {
+  } catch (err) {
+    console.error("getContactSubmissions failed:", err);
     return [];
   }
 }
@@ -59,7 +60,8 @@ export async function countNewContactSubmissions(): Promise<number> {
 
   try {
     return prisma.contactSubmission.count({ where: { status: "new" } });
-  } catch {
+  } catch (err) {
+    console.error("countNewContactSubmissions failed:", err);
     return 0;
   }
 }
