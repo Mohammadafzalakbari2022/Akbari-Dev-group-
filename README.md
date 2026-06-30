@@ -7,7 +7,7 @@ Trilingual (Dari default, Pashto, English) personal developer hub for **Akbari D
 - [Node.js](https://nodejs.org/) 20+
 - npm 10+
 - [Supabase](https://supabase.com/) account (database, auth, storage)
-- [Render](https://render.com/) account (deployment)
+- [Vercel](https://vercel.com/) account (deployment)
 
 ## Quick start (local)
 
@@ -126,37 +126,23 @@ The app builds without credentials — public pages show empty/placeholder state
 
 ---
 
-## 5. Deploy to Render
+## 5. Deploy to Vercel
 
-### Create a Web Service
+### Connect repository
 
 1. Push code to GitHub
-2. [dashboard.render.com](https://dashboard.render.com) → **New +** → **Web Service**
-3. Connect your GitHub repository
-4. Fill in:
-   - **Name:** `akbari-dev-hub`
-   - **Region:** Choose closest to your users
-   - **Branch:** `master`
-   - **Runtime:** **Node**
-   - **Build Command:** `npm install; npm run build`
-   - **Start Command:** `npm run start`
-   - **Plan:** **Free** or **Starter**
+2. [vercel.com/new](https://vercel.com/new) → Import repository
+3. Framework preset: **Next.js** (auto-detected)
 
 ### Set environment variables
 
-In Render dashboard → **Environment** tab, add all variables from `.env.local`.
+In **Project Settings → Environment Variables**, add all variables from `.env.local` for **Production**.
 
-Set `NEXT_PUBLIC_SITE_URL` to your Render domain (e.g. `https://akbari-dev-hub.onrender.com`).
+Set `NEXT_PUBLIC_SITE_URL` to your Vercel domain (e.g. `https://akbari-dev-hub.vercel.app`).
 
-### Service Worker headers
+### Build settings
 
-Render doesn't support custom headers on the Free plan. For the PWA service worker (`/sw.js`) to work, add these headers via a Render **CDN** or **Custom Domain** with **Blueprints**. Alternatively, the service worker is served with default cache headers — PWA will still function on first load.
-
-### Custom domain
-
-1. Render dashboard → **Settings** → **Custom Domain**
-2. Add your domain and update DNS per Render instructions
-3. Update `NEXT_PUBLIC_SITE_URL` to match
+Default build command works — runs `prisma generate && next build --webpack` (webpack required for Serwist PWA service worker).
 
 ### Post-deploy checklist
 
@@ -164,7 +150,7 @@ Render doesn't support custom headers on the Free plan. For the PWA service work
 - [ ] Run `npm run db:seed` (first deploy only)
 - [ ] Create admin user in Supabase Auth
 - [ ] Create `media` Storage bucket
-- [ ] Configure Supabase Auth URL Configuration (add your Render URL)
+- [ ] Configure Supabase Auth URL Configuration (add your Vercel URL)
 - [ ] Test `/fa`, `/admin/login`, PWA install on mobile
 - [ ] Verify `/sitemap.xml` and `/robots.txt`
 
@@ -238,4 +224,4 @@ Private — Akbari Dev Group
 
 ## Deployment
 
-See **[DEPLOY.md](./DEPLOY.md)** for the complete Render + Supabase deployment guide, env var reference, troubleshooting, and post-deploy checklist.
+See **[DEPLOY.md](./DEPLOY.md)** for the complete Vercel + Supabase deployment guide, env var reference, troubleshooting, and post-deploy checklist.
