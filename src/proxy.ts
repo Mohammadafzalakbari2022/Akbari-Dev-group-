@@ -31,7 +31,7 @@ async function handleAdminAuth(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet, headers) {
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value),
           );
@@ -39,6 +39,11 @@ async function handleAdminAuth(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) =>
             response.cookies.set(name, value, options),
           );
+          if (headers) {
+            Object.entries(headers).forEach(([key, value]) =>
+              response.headers.set(key, value),
+            );
+          }
         },
       },
     },
@@ -46,7 +51,7 @@ async function handleAdminAuth(request: NextRequest) {
 
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await supabase.auth.getUser().catch(() => ({ data: { user: null } }));
 
   if (!user) {
     const loginUrl = new URL("/admin/login", request.url);
@@ -57,7 +62,7 @@ async function handleAdminAuth(request: NextRequest) {
   return response;
 }
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const adminResponse = await handleAdminAuth(request);
   if (adminResponse) return adminResponse;
 
